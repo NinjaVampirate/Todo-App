@@ -1,0 +1,19 @@
+{% extends 'todo.html.twig' %}
+
+{% block title %}
+    Todo List
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts '@AppBundle/js/*' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+{% block stylesheets %}
+    {% stylesheets '@AppBundle/css/*' filter='cssrewrite' %}
+        <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block pending %}{% endblock %}

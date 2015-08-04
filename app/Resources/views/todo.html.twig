@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}{% endblock %}</title>
+        {% block javascripts %}{% endblock %}
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        <h2 class="head">James's To-Do List</h1>
+    <div class="wrapper">  
+        <div id="pending" class="container">
+            <h2 class="title"><strong>To do</strong></h2>
+            <ul>
+                {% for thing in itemList if thing.getStatus() == true %}
+                <li><a href="status/{{ thing.getId() }}">{{ thing.getItem() }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+         
+        <div id="finished" class="container">
+            <h2 class="title"><strong>Completed</strong></h2>
+            <ul>
+                {% for thing in itemList if thing.getStatus() == false %}
+                <li><a href="delete/{{ thing.getId() }}">{{ thing.getItem() }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+        <div id="create">
+            <button id="add" onclick=addItem()>Create new item</button>
+            <form action ="create" method = "post" id="form" style="display:none">
+                Add item: <input type="text" name="item">
+                <input type="submit" value="+">
+            </form>
+        </div>
+    </div>      
+    </body>
+</html>
